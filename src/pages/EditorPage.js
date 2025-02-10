@@ -4,6 +4,8 @@ import ACTIONS from '../Actions';
 import Client from '../components/Client';
 import Editor from '../components/Editor';
 import { initSocket } from '../socket';
+
+
 import {
     useLocation,
     useNavigate,
@@ -123,7 +125,20 @@ const EditorPage = () => {
             socketRef.current.off(ACTIONS.DISCONNECTED);
         };
     }, []);
-
+    const reportWebVitals = (onPerfEntry) => {
+        if (onPerfEntry && onPerfEntry instanceof Function) {
+          import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+            getCLS(onPerfEntry);
+            getFID(onPerfEntry);
+            getFCP(onPerfEntry);
+            getLCP(onPerfEntry);
+            getTTFB(onPerfEntry);
+          });
+        }
+      };
+      
+      export default reportWebVitals;
+      
     async function copyRoomId() {
         try {
             await navigator.clipboard.writeText(roomId);
